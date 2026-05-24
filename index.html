@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cynthia Dwi Fortuna Hartono</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,body{
+width:100%;
+height:100%;
+overflow:hidden;
+font-family:'Poppins',sans-serif;
+background:#EAF4F1;
+}
+
+/* SECTION */
+.section{
+position:absolute;
+width:100%;
+height:100vh;
+top:0;
+left:0;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+opacity:0;
+visibility:hidden;
+transform:translateX(80px);
+
+transition:
+opacity 0.6s ease,
+transform 0.6s ease,
+visibility 0.6s;
+}
+
+.section.active{
+opacity:1;
+visibility:visible;
+transform:translateX(0);
+z-index:1;
+}
+
+/* NAVBAR */
+.nav-btn{
+transition:0.3s;
+padding:8px 16px;
+border-radius:10px;
+}
+
+.nav-btn:hover{
+background:#6FAF9E;
+color:white;
+}
+
+/* CARD */
+.card-hover{
+transition:0.4s;
+}
+
+.card-hover:hover{
+transform:translateY(-8px) scale(1.02);
+box-shadow:0 20px 40px rgba(0,0,0,0.12);
+}
+
+/* ANIMASI */
+.fade-up{
+animation:fadeUp 1s ease;
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+</style>
+</head>
+
+<body class="text-gray-800">
+
+<!-- NAVBAR -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-[#EAF4F1]/80 backdrop-blur-md shadow-sm">
+
+<div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+
+<h1 class="text-2xl font-bold text-emerald-700">
+Cynthia
+</h1>
+
+<div class="flex gap-3 text-sm font-medium">
+
+<button class="nav-btn" onclick="showSection('home')">
+Home
+</button>
+
+<button class="nav-btn" onclick="showSection('tentang')">
+Tentang
+</button>
+
+<button class="nav-btn" onclick="showSection('kegiatan')">
+Kegiatan
+</button>
+
+<button class="nav-btn" onclick="showSection('kontak')">
+Kontak
+</button>
+
+</div>
+
+</div>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="section active">
+
+<div class="absolute inset-0">
+<img id="bgPreview"
+src="images/background.jpg.jpeg"
+class="w-full h-full object-cover">
+</div>
+
+<div class="absolute inset-0 bg-gradient-to-br from-[#EAF4F1]/70 to-[#CFE8E0]/60"></div>
+
+<div class="relative z-10 text-center px-6 max-w-2xl fade-up">
+
+<img id="fotoPreview"
+src="images/profile.jpg.jpeg"
+class="w-44 h-44 rounded-full mx-auto border-4 border-white shadow-2xl mb-6 object-cover">
+
+<h1 class="text-4xl md:text-6xl font-extrabold text-gray-800 mb-4">
+Cynthia Dwi Fortuna Hartono
+</h1>
+
+<p class="text-lg text-gray-700 mb-8">
+Mahasiswa Teknik Pengolahan Limbah
+</p>
+
+<div class="flex flex-wrap justify-center gap-4 mb-8">
+
+<button onclick="showSection('tentang')"
+class="bg-[#6FAF9E] hover:bg-[#5e9b8a] text-white px-6 py-3 rounded-xl transition">
+Tentang
+</button>
+
+<button onclick="showSection('kegiatan')"
+class="bg-[#6FAF9E] hover:bg-[#5e9b8a] text-white px-6 py-3 rounded-xl transition">
+Kegiatan
+</button>
+
+<button onclick="showSection('kontak')"
+class="bg-[#6FAF9E] hover:bg-[#5e9b8a] text-white px-6 py-3 rounded-xl transition">
+Kontak
+</button>
+
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel" class="hidden flex flex-wrap justify-center gap-4">
+
+<label class="bg-white px-4 py-2 rounded-lg shadow cursor-pointer text-sm hover:scale-105 transition">
+Upload Foto
+<input type="file" accept="image/*" hidden onchange="previewFoto(event)">
+</label>
+
+<label class="bg-white px-4 py-2 rounded-lg shadow cursor-pointer text-sm hover:scale-105 transition">
+Upload Background
+<input type="file" accept="image/*" hidden onchange="previewBackground(event)">
+</label>
+
+</div>
+
+</div>
+</section>
+
+<!-- TENTANG -->
+<section id="tentang" class="section bg-gradient-to-br from-[#C7D9C8] to-[#AFC4B0]">
+
+<div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center fade-up">
+
+<div class="flex justify-center">
+
+<div id="adminFotoTentang" class="hidden">
+
+<label class="cursor-pointer">
+
+<img id="fotoTentang"
+src="images/tentang.jpg.jpeg"
+class="w-80 rounded-3xl shadow-2xl hover:scale-105 transition object-cover">
+
+<input type="file" hidden accept="image/*" id="inputFotoTentang">
+
+</label>
+
+</div>
+
+<img id="fotoTentangUser"
+src="https://via.placeholder.com/400"
+class="w-80 rounded-3xl shadow-2xl object-cover">
+
+</div>
+
+<div>
+
+<h2 class="text-4xl font-bold mb-4">
+Tentang Cynthia
+</h2>
+
+<p class="text-lg leading-relaxed mb-6">
+Saya merupakan mahasiswa Teknik Pengolahan Limbah yang lahir di Pasuruan pada tanggal 6 Desember 2006 dan memiliki minat pada bidang lingkungan serta pengelolaan limbah berkelanjutan. Aktif mengikuti kegiatan akademik maupun UKM untuk mengembangkan kemampuan komunikasi, kerja sama tim, dan pemecahan masalah.
+</p>
+
+<div class="grid grid-cols-2 gap-5">
+
+<h3 class="text-2xl font-semibold mt-10 mb-5">
+Educational Background
+</h3>
+
+<div class="grid md:grid-cols-2 gap-6"></div>
+
+<!-- SMAN -->
+<div class="bg-white/80 p-5 rounded-2xl shadow hover:scale-105 transition cursor-pointer"
+onclick="toggleDoc('smaDoc')">
+
+<h4 class="font-semibold text-lg">
+SMAN 1 Bangil
+</h4>
+
+<p class="text-sm text-gray-600 mt-2">
+Sekolah Menengah Atas
+</p>
+
+<div id="smaDoc" class="hidden mt-4">
+
+<img src="images/sman1bangil.jpg.jpeg"
+class="rounded-xl w-full h-96 object-contain bg-white">
+
+</div>
+
+</div>
+
+<!-- PPNS -->
+<div class="bg-white/80 p-5 rounded-2xl shadow hover:scale-105 transition cursor-pointer"
+onclick="toggleDoc('ppnsDoc')">
+
+<h4 class="font-semibold text-lg">
+Politeknik Perkapalan Negeri Surabaya
+</h4>
+
+<p class="text-sm text-gray-600 mt-2">
+Teknik Pengolahan Limbah
+</p>
+
+<div id="ppnsDoc" class="hidden mt-4">
+
+<img src="images/ppns.jpg.jpeg"
+class="rounded-xl w-full h-96 object-contain bg-white">
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- KEGIATAN -->
+<section id="kegiatan" class="section bg-gradient-to-br from-[#AFC4B0] to-[#9FB8A5] overflow-y-auto py-24">
+
+<div class="max-w-6xl mx-auto px-6 text-center fade-up">
+
+<h2 class="text-4xl font-bold mb-14">
+Kegiatan
+</h2>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<!-- CARD 1 -->
+<div class="bg-white/80 p-8 rounded-3xl card-hover">
+
+<i class="fa-solid fa-users text-5xl text-emerald-600 mb-5"></i>
+
+<h3 class="font-bold text-xl mb-3">
+UKM Penalaran PPNS
+</h3>
+
+<p class="text-sm leading-relaxed mb-5">
+UKM Penalaran melatih berpikir kritis melalui diskusi dan musyawarah termasuk isu lingkungan dan pengelolaan limbah.
+</p>
+
+<button onclick="toggleDoc('doc1')"
+class="bg-emerald-600 text-white px-4 py-2 rounded-xl text-sm hover:scale-105 transition">
+Lihat Dokumentasi
+</button>
+
+<div id="upload1" class="hidden">
+
+<label class="block mt-3 bg-gray-100 p-2 rounded-lg cursor-pointer text-sm hover:bg-gray-200 transition">
+Upload Dokumentasi
+<input type="file" accept="image/*" hidden onchange="uploadDokumentasi(event,'img1')">
+</label>
+
+</div>
+
+<!-- FOTO MUNCUL SAAT BUTTON DIKLIK -->
+<div id="doc1" class="hidden mt-5">
+
+<img id="img1"
+src="images/kegiatan1.jpg.jpeg"
+class="rounded-2xl shadow-lg w-full h-60 object-cover">
+
+</div>
+
+</div>
+<!-- CARD 2 -->
+<!-- CARD 2 -->
+<div class="bg-white/80 p-8 rounded-3xl card-hover">
+
+<i class="fa-solid fa-leaf text-5xl text-green-600 mb-5"></i>
+
+<h3 class="font-bold text-xl mb-3">
+Green Action
+</h3>
+
+<p class="text-sm leading-relaxed mb-5">
+Kegiatan penanaman pohon untuk mengurangi emisi karbon dan meningkatkan kualitas udara.
+</p>
+
+<button onclick="toggleDoc('doc2')"
+class="bg-green-600 text-white px-4 py-2 rounded-xl text-sm hover:scale-105 transition">
+Lihat Dokumentasi
+</button>
+
+<!-- UPLOAD FOTO -->
+<div id="upload2" class="hidden">
+
+<label class="block mt-3 bg-gray-100 p-2 rounded-lg cursor-pointer text-sm hover:bg-gray-200 transition">
+Upload Dokumentasi
+<input type="file"
+accept="image/*"
+hidden
+onchange="uploadDokumentasi(event,'img2')">
+</label>
+
+</div>
+
+<!-- FOTO MUNCUL SAAT BUTTON DIKLIK -->
+<div id="doc2" class="hidden mt-5">
+
+<img id="img2"
+src="images/kegiatan2.jpg.jpeg"
+class="rounded-2xl shadow-lg w-full h-60 object-cover">
+
+</div>
+
+</div>
+<!-- CARD 3 -->
+<!-- CARD 3 -->
+<div class="bg-white/80 p-8 rounded-3xl card-hover">
+
+<i class="fa-solid fa-worm text-5xl text-lime-600 mb-5"></i>
+
+<h3 class="font-bold text-xl mb-3">
+Budidaya Maggot
+</h3>
+
+<p class="text-sm leading-relaxed mb-5">
+Pengelolaan limbah organik melalui budidaya maggot sebagai inovasi makanan ayam ternak tinggi protein.
+</p>
+
+<button onclick="toggleDoc('doc3')"
+class="bg-purple-600 text-white px-4 py-2 rounded-xl text-sm hover:scale-105 transition">
+Lihat Dokumentasi
+</button>
+
+<!-- UPLOAD FOTO -->
+<div id="upload3" class="hidden">
+
+<label class="block mt-3 bg-gray-100 p-2 rounded-lg cursor-pointer text-sm hover:bg-gray-200 transition">
+Upload Dokumentasi
+<input type="file"
+accept="image/*"
+hidden
+onchange="uploadDokumentasi(event,'img3')">
+</label>
+
+</div>
+
+<!-- FOTO DOKUMENTASI -->
+<div id="doc3" class="hidden mt-5">
+
+<img id="img3"
+src="images/kegiatan3.jpg.jpeg"
+class="rounded-2xl shadow-lg w-full h-60 object-cover">
+
+</div>
+
+</div>
+
+</section>
+
+<!-- KONTAK -->
+<section id="kontak" class="section bg-gradient-to-br from-[#9FB8A5] to-[#7FAF9A]">
+
+<div class="max-w-4xl mx-auto px-6 text-center fade-up">
+
+<h2 class="text-4xl font-bold mb-10">
+Kontak
+</h2>
+
+<div class="bg-white/40 backdrop-blur-md rounded-3xl shadow-2xl p-10 max-w-xl mx-auto card-hover">
+
+<p class="mb-8 text-lg">
+Mari terhubung dengan saya 
+</p>
+
+<div class="flex justify-center gap-8 text-3xl mb-8">
+
+<a href="mailto:cynthiaadwiifh@gmail.com"
+class="hover:scale-125 transition">
+<i class="fa-solid fa-envelope"></i>
+</a>
+
+<a href="https://instagram.com/cynthiaadfh"
+target="_blank"
+class="hover:scale-125 transition">
+<i class="fa-brands fa-instagram"></i>
+</a>
+
+<a href="https://wa.me/6281217745946"
+target="_blank"
+class="hover:scale-125 transition">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
+
+</div>
+
+<p class="text-sm">
+Surabaya, Indonesia
+</p>
+
+</div>
+
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="fixed bottom-0 w-full bg-[#6FAF9E] text-white text-center py-3 text-sm z-50">
+© 2026 Cynthia Dwi Fortuna Hartono
+</footer>
+
+<script>
+
+/* PINDAH SECTION */
+function showSection(id){
+
+const sections = document.querySelectorAll('.section');
+
+sections.forEach(section => {
+section.classList.remove('active');
+});
+
+document.getElementById(id).classList.add('active');
+}
+
+/* HERO FOTO */
+function previewFoto(event){
+
+const reader = new FileReader();
+
+reader.onload = function(){
+
+document.getElementById('fotoPreview').src = reader.result;
+
+localStorage.setItem('fotoHero', reader.result);
+
+}
+
+reader.readAsDataURL(event.target.files[0]);
+}
+
+/* HERO BACKGROUND */
+function previewBackground(event){
+
+const reader = new FileReader();
+
+reader.onload = function(){
+
+document.getElementById('bgPreview').src = reader.result;
+
+localStorage.setItem('bgHero', reader.result);
+
+}
+
+reader.readAsDataURL(event.target.files[0]);
+}
+
+/* FOTO TENTANG */
+document.getElementById("inputFotoTentang").addEventListener("change", function(event){
+
+const reader = new FileReader();
+
+reader.onload = function(){
+
+document.getElementById("fotoTentang").src = reader.result;
+
+document.getElementById("fotoTentangUser").src = reader.result;
+
+localStorage.setItem("fotoTentang", reader.result);
+
+}
+
+reader.readAsDataURL(event.target.files[0]);
+
+});
+
+/* TAMPILKAN DOKUMENTASI */
+function toggleDoc(id){
+
+const doc = document.getElementById(id);
+
+if(doc.classList.contains("hidden")){
+doc.classList.remove("hidden");
+}else{
+doc.classList.add("hidden");
+}
+
+}
+
+/* UPLOAD DOKUMENTASI */
+function uploadDokumentasi(event, imgId){
+
+const reader = new FileReader();
+
+reader.onload = function(){
+
+document.getElementById(imgId).src = reader.result;
+
+localStorage.setItem(imgId, reader.result);
+
+}
+
+reader.readAsDataURL(event.target.files[0]);
+
+}
+
+/* LOAD DATA */
+window.onload = function(){
+
+if(localStorage.getItem("fotoHero")){
+document.getElementById("fotoPreview").src =
+localStorage.getItem("fotoHero");
+}
+
+if(localStorage.getItem("bgHero")){
+document.getElementById("bgPreview").src =
+localStorage.getItem("bgHero");
+}
+
+if(localStorage.getItem("fotoTentang")){
+
+document.getElementById("fotoTentang").src =
+localStorage.getItem("fotoTentang");
+
+document.getElementById("fotoTentangUser").src =
+localStorage.getItem("fotoTentang");
+
+}
+
+["img1","img2","img3"].forEach(id => {
+
+if(localStorage.getItem(id)){
+
+document.getElementById(id).src =
+localStorage.getItem(id);
+
+}
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
